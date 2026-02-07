@@ -1,0 +1,7 @@
+{
+  "name": "proyectoFinalFutbol",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
