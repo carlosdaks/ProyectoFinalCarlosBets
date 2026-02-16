@@ -1,0 +1,137 @@
+/* FONDO GLOBAL CARLOS BETS */
+ion-content {
+  --background: #004d31 !important;
+  background: linear-gradient(180deg, #004d31 0%, #002b1b 100%) !important;
+}
+
+.main-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* HEADER */
+.header-bet {
+  --background: #002b1b !important;
+  border-bottom: 2px solid #ffdf1b;
+}
+
+.title-bet {
+  color: #ffdf1b !important;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.btn-amarillo {
+  --color: #ffdf1b !important;
+}
+
+/* GRID DE ESTADÍSTICAS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 30px;
+
+  .stat-box {
+    background: #e9f0ec;
+    padding: 15px 5px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    border-bottom: 3px solid #1eb980;
+
+    small { color: #666; font-weight: 800; font-size: 0.6rem; letter-spacing: 1px; }
+    strong { display: block; color: #004d31; font-size: 1.4rem; font-weight: 900; }
+
+    &.accent { border-bottom-color: #ff003c; }
+    &.yellow { border-bottom-color: #ffdf1b; }
+  }
+}
+
+/* TARJETAS DE APUESTA */
+.card-apuesta {
+  --background: #e9f0ec !important;
+  background: #e9f0ec !important;
+  border-radius: 16px;
+  margin: 0 0 15px 0;
+  color: #003321 !important;
+  border: none;
+
+  .info-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    .jornada-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #004d31;
+      background: rgba(0,0,0,0.05);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+  }
+}
+
+/* DISEÑO DEL MARCADOR */
+.marcador-prediccion {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+
+  .equipo-block {
+    text-align: center;
+    flex: 1;
+    .name { font-weight: 700; font-size: 0.85rem; display: block; margin-bottom: 5px; }
+    .goles-user {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #004d31;
+    }
+  }
+
+  .separador-vs {
+    font-weight: 900;
+    color: #cbd5cf;
+    font-size: 1.2rem;
+  }
+}
+
+/* BADGES PERSONALIZADOS */
+.badge-puntos {
+  --padding-start: 10px;
+  --padding-end: 10px;
+  font-weight: 800;
+  &.success { --background: #1eb980 !important; --color: #003321 !important; }
+  &.fail { --background: #ff003c !important; --color: white !important; }
+}
+
+.badge-pendiente {
+  --background: #ffdf1b !important;
+  --color: #003321 !important;
+  font-weight: 800;
+}
+
+/* CUADRO RESULTADO REAL */
+.resultado-real-box {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed #cbd5cf;
+  text-align: center;
+
+  .resultado-tag { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; color: #666; }
+  .resultado-val { font-size: 1rem; font-weight: 800; color: #004d31; }
+}
+
+.section-title { color: white; font-weight: 800; margin: 20px 0 15px 5px; }
+
+.no-data-card {
+  text-align: center;
+  padding: 40px;
+  color: #b3c9c0;
+  ion-icon { font-size: 4rem; margin-bottom: 10px; }
+}

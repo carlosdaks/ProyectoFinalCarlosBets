@@ -1,0 +1,152 @@
+/* REUTILIZAR FONDO Y CONTENEDOR */
+ion-content {
+  --background: #004d31; 
+  background: linear-gradient(180deg, #004d31 0%, #002b1b 100%);
+}
+
+.main-container {
+  width: 90%;
+  max-width: 800px; /* En detalles preferimos que sea más recogido aún */
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* HEADER ESTILO HOME */
+.header-bet {
+  --background: #002b1b;
+  border-bottom: 2px solid #ffdf1b;
+}
+
+.title-bet {
+  color: #ffdf1b;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-amarillo {
+  --color: #ffdf1b !important;
+}
+
+/* TARJETA DE MARCADOR PRINCIPAL */
+.scoreboard-card {
+  background: #e9f0ec;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+
+  .jornada-badge {
+    background: #004d31;
+    color: #ffdf1b;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .score-display {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+
+    .team-block h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #003321;
+      margin: 0;
+    }
+
+    .score-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #004d31;
+    }
+  }
+}
+
+/* SECCIÓN DE EVENTOS */
+.section-title {
+  color: white;
+  font-size: 1.2rem;
+  margin-left: 10px;
+}
+
+.events-card {
+  background: #cbd5cf;
+  border-radius: 15px;
+
+  .event-item {
+    --background: transparent;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    
+    .player-name {
+      font-weight: 700;
+      color: #003321;
+    }
+    .event-detail {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+/* SECCIÓN DE APUESTAS */
+.bet-card {
+  background: #e9f0ec;
+  border-radius: 20px;
+  border-bottom: 4px solid #ffdf1b;
+
+  .bet-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+
+    .selector-column {
+      text-align: center;
+      .big-number {
+        font-size: 4rem;
+        font-weight: 900;
+        color: #004d31;
+      }
+      .team-label {
+        font-weight: 800;
+        color: #666;
+      }
+    }
+
+    .separator {
+      font-size: 3rem;
+      font-weight: 900;
+      padding: 0 20px;
+      color: #004d31;
+    }
+  }
+}
+
+.btn-adjust {
+  --color: #004d31;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.confirm-btn {
+  --background: #ffdf1b;
+  --color: #004d31;
+  --border-radius: 12px;
+  font-weight: 800;
+  margin-top: 20px;
+  height: 50px;
+}
+
+/* EFECTO PULSO LIVE */
+.pulse {
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 60, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 0, 60, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 60, 0); }
+}

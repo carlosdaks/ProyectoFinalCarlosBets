@@ -1,0 +1,38 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header-bet">
+    <ion-title class="title-bet">Acceso Usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-wrapper">
+    <div class="login-card">
+      
+      <div style="text-align: center; margin-bottom: 30px;">
+        <ion-icon name="person-circle" style="font-size: 80px; color: #ffdf1b;"></ion-icon>
+      </div>
+
+      <ion-item lines="none" class="custom-item">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="email" placeholder="Introduce tu email"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="custom-item">
+        <ion-label position="stacked">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="password" placeholder="••••••••"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" class="btn-login" (click)="onLogin()">
+        ENTRAR
+      </ion-button>
+
+      <div class="text-footer">
+        <p>¿Aún no tienes cuenta?</p>
+        <ion-button fill="clear" class="btn-registro" routerLink="/registro">
+          CREAR UNA AHORA
+        </ion-button>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

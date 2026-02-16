@@ -1,0 +1,137 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header-bet">
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/home"
+        class="btn-amarillo"
+        text="Volver"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title-bet">Clasificación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-container">
+    <h2 class="section-title">Tabla de Posiciones</h2>
+
+    <ion-card class="table-card">
+      <div class="table-scroll">
+        <table class="tabla-clasificacion">
+          <thead>
+            <tr>
+              <th>Pos</th>
+              <th class="align-left">Equipo</th>
+              <th>PJ</th>
+              <th>PG</th>
+              <th>PE</th>
+              <th>PP</th>
+              <th>GF</th>
+              <th>GC</th>
+              <th>Pts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let eq of clasificacion; let i = index">
+              <td class="pos-col">{{ i + 1 }}</td>
+              <td class="align-left">
+                <div
+                  class="team-cell"
+                  [routerLink]="['/detalles-equipos', eq.name]"
+                  style="cursor: pointer"
+                >
+                  <img [src]="getEscudo(eq.name)" class="escudo-tabla" />
+                  <strong>{{ eq.name }}</strong>
+                </div>
+              </td>
+              <td>{{ eq.pj }}</td>
+              <td>{{ eq.pg }}</td>
+              <td>{{ eq.pe }}</td>
+              <td>{{ eq.pp }}</td>
+              <td>{{ eq.gf }}</td>
+              <td>{{ eq.gc }}</td>
+              <td class="pts-bold">{{ eq.pts }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ion-card>
+
+    <h2 class="section-title">Resultados por Jornada</h2>
+
+    <ion-item lines="none" class="custom-select-item">
+      <ion-label>Seleccionar Jornada:</ion-label>
+      <ion-select
+        [(ngModel)]="jornadaSeleccionada"
+        (ionChange)="cargarJornada()"
+        interface="popover"
+      >
+        <ion-select-option *ngFor="let j of jornadas" [value]="j">
+          Jornada {{ j }}
+        </ion-select-option>
+      </ion-select>
+
+      <ion-button
+        slot="end"
+        (click)="volverAJornadaActual()"
+        class="btn-jornada-actual"
+      >
+        Jornada actual
+      </ion-button>
+    </ion-item>
+
+    <div
+      *ngIf="partidosFiltrados.length === 0"
+      class="ion-text-center ion-padding white-text"
+    >
+      <ion-spinner name="crescent" color="warning"></ion-spinner>
+      <p>Cargando Jornada {{ jornadaSeleccionada }}...</p>
+    </div>
+
+    <div class="grid-resultados">
+      <ion-card *ngFor="let p of partidosFiltrados" class="result-card">
+        <ion-card-content>
+          <div class="result-row">
+            <div
+              class="team-info local"
+              [routerLink]="['/detalles-equipos', p.home]"
+              style="cursor: pointer"
+            >
+              <img [src]="getEscudo(p.home)" class="escudo-resultado" />
+              <span class="team-name">{{ p.home }}</span>
+            </div>
+
+            <div class="score-container">
+              <span class="final-score" *ngIf="p.status !== 'pending'">
+                {{ p.homeScore }} - {{ p.awayScore }}
+              </span>
+              <span class="final-score pending" *ngIf="p.status === 'pending'">
+                VS
+              </span>
+            </div>
+
+            <div
+              class="team-info visitante"
+              [routerLink]="['/detalles-equipos', p.away]"
+              style="cursor: pointer"
+            >
+              <span class="team-name text-right">{{ p.away }}</span>
+              <img [src]="getEscudo(p.away)" class="escudo-resultado" />
+            </div>
+          </div>
+
+          <div class="match-details-container">
+            <ion-button
+              expand="block"
+              class="btn-detalles"
+              [routerLink]="['/detalles-partidos', p.id]"
+            >
+              <ion-icon name="eye-outline" slot="start"></ion-icon>
+              Detalles del partido
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

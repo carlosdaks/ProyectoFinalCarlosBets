@@ -1,0 +1,58 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header-bet">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/clasificacion" class="btn-amarillo" text="Volver"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title-bet">Plantilla</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-container">
+    
+    <div *ngIf="cargando" class="ion-text-center ion-padding">
+      <ion-spinner name="crescent" color="warning"></ion-spinner>
+      <p class="white-text">Cargando datos de la liga...</p>
+    </div>
+
+    <div *ngIf="!cargando">
+      <div class="team-header-card">
+        <img [src]="getEscudo(nombreEquipo)" class="shield-xl">
+        <h1>{{ nombreEquipo }}</h1>
+        
+        <div class="stats-row" *ngIf="estadisticas">
+          <div class="stat-item">
+            <span class="label">Puntos totales: </span>
+            <span class="value yellow">{{ estadisticas.pts }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="label">Partidos jugados: </span>
+            <span class="value">{{ estadisticas.pj }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="label">Partidos ganados: </span>
+            <span class="value">{{ estadisticas.pg }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="label">Diferencia de goles: </span>
+            <span class="value">{{ estadisticas.gf - estadisticas.gc }}</span>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Plantilla</h2>
+
+      <div class="players-grid">
+        <ion-card *ngFor="let p of listaJugadores" class="player-card">
+          <ion-card-content>
+            <img [src]="p.avatar_url" class="player-avatar">
+            <div class="player-info">
+              <span class="player-name">{{ p.name }}</span>
+              <span class="player-goals" *ngIf="p.goals > 0">{{ p.goals }} goles</span>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+</ion-content>

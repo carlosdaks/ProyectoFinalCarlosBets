@@ -1,0 +1,221 @@
+/* FONDO GLOBAL CARLOS BETS */
+ion-content {
+  --background: #004d31 !important;
+  background: linear-gradient(180deg, #004d31 0%, #002b1b 100%) !important;
+}
+
+.main-container {
+  width: 95%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 15px 0 50px 0;
+}
+
+/* HEADER */
+.header-bet {
+  --background: #002b1b !important;
+  border-bottom: 2px solid #ffdf1b;
+}
+
+.title-bet {
+  color: #ffdf1b !important;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.btn-amarillo {
+  --color: #ffdf1b !important;
+}
+
+/* ESTILO TABLA */
+.table-card {
+  --background: #e9f0ec !important;
+  background: #e9f0ec !important;
+  border-radius: 12px;
+  margin: 0 0 30px 0;
+  overflow: hidden;
+}
+
+.tabla-clasificacion {
+  width: 100%;
+  border-collapse: collapse;
+  color: #003321;
+
+  thead {
+    background: #002b1b;
+    color: #ffdf1b;
+    
+    th {
+      padding: 12px 8px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    
+    td {
+      padding: 12px 8px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .align-left { text-align: left; }
+    .pos-col { font-weight: 800; background: rgba(0,0,0,0.03); }
+    .pts-bold { font-weight: 900; color: #004d31; background: rgba(255, 223, 27, 0.2); }
+  }
+}
+
+/* SELECTOR */
+.custom-select-item {
+  --background: rgba(255, 255, 255, 0.1) !important;
+  --color: white !important;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  
+  ion-label { color: white !important; font-weight: bold; }
+  ion-select { --placeholder-color: #ffdf1b; color: #ffdf1b; font-weight: 800; }
+}
+
+/* TARJETAS DE RESULTADOS */
+.grid-resultados {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.result-card {
+  --background: #e9f0ec !important;
+  background: #e9f0ec !important;
+  margin: 0 !important;
+  border-radius: 10px;
+
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .team-name {
+      flex: 1;
+      font-weight: 700;
+      color: #003321;
+      font-size: 0.9rem;
+    }
+
+    .final-score {
+      background: #004d31;
+      color: #ffdf1b;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-weight: 800;
+      margin: 0 10px;
+      min-width: 60px;
+      text-align: center;
+
+      &.pending { background: #cbd5cf; color: #004d31; }
+    }
+  }
+}
+
+.section-title {
+  color: white;
+  font-weight: 800;
+  margin: 20px 0 15px 5px;
+  font-size: 1.2rem;
+}
+
+.white-text { color: white; }
+/* ESCUDOS EN LA TABLA DE CLASIFICACIÓN */
+.tabla-clasificacion {
+  img {
+    width: 32px !important;    /* Tamaño grande para la tabla */
+    height: 32px !important;
+    object-fit: contain;
+    /* Sombra sutil para que el escudo tenga relieve */
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15));
+    transition: transform 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.1); /* Efecto mini al pasar el ratón */
+    }
+  }
+
+  .align-left div {
+    display: flex;
+    align-items: center;
+    gap: 12px;     /* Separación entre escudo y nombre */
+    padding: 6px 0; /* Un poco de aire en la fila */
+  }
+}
+
+/* ESCUDOS EN LAS TARJETAS DE RESULTADOS (JORNADAS) */
+.result-card {
+  img {
+    width: 28px !important;    /* Un pelín más pequeños para los partidos */
+    height: 28px !important;
+    object-fit: contain;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+  }
+
+  .result-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}
+
+/* ESTILO PARA EL ICONO POR DEFECTO (Si falla la carga) */
+img[src*="default.png"] {
+  opacity: 0.6;
+  filter: grayscale(1);
+}
+.btn-jornada-actual {
+  --background: #ffdf1b !important;
+  --color: #003321 !important;
+  font-weight: 900 !important;
+  --border-radius: 8px !important;
+  margin-left: 10px;
+  --padding-start: 15px;
+  --padding-end: 15px;
+  height: 36px; /* Ajusta la altura para que quede alineado con el select */
+}
+.match-details-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px; // Espacio con respecto a los equipos
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08); // Una línea muy fina para separar
+  width: 100%;
+}
+.btn-detalles {
+  --background: #1eb980 !important;
+  --color: #003321 !important;
+  --border-radius: 10px !important;
+  --box-shadow: none;
+  font-weight: 800 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 10px 0 0 0 !important;
+  height: 36px !important;
+  width: 100%; 
+
+  /* Estilo del icono interno */
+  ion-icon {
+    font-size: 1.1rem;
+    color: #003321 !important;
+    margin-right: 5px;
+  }
+
+  /* Estado activo */
+  &:active {
+    opacity: 0.7;
+  }
+}

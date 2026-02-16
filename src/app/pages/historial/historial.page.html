@@ -1,0 +1,72 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header-bet">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" class="btn-amarillo" text="Volver"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title-bet">Mi Actividad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-container">
+    
+    <div class="stats-grid">
+      <div class="stat-box">
+        <small>PUNTOS</small>
+        <strong>{{ puntosTotales }}</strong>
+      </div>
+      <div class="stat-box accent">
+        <small>WINRATE</small>
+        <strong>{{ winrate }}%</strong>
+      </div>
+      <div class="stat-box yellow">
+        <small>PORRAS</small>
+        <strong>{{ totalPorras }}</strong>
+      </div>
+    </div>
+
+    <h3 class="section-title">Últimas Predicciones</h3>
+
+    <div *ngIf="apuestas.length === 0" class="no-data-card">
+      <ion-icon name="analytics-outline"></ion-icon>
+      <p>Aún no has hecho ninguna porra.</p>
+    </div>
+
+    <ion-card *ngFor="let apuesta of apuestas" class="card-apuesta" 
+              [class.match-finished]="apuesta.match?.status === 'finished'">
+      <ion-card-content>
+        
+        <div class="info-superior">
+          <div class="badges-row">
+            <ion-badge class="badge-puntos" [class.success]="apuesta.pointsEarned > 0" [class.fail]="apuesta.pointsEarned === 0" *ngIf="apuesta.match?.status === 'finished'">
+              {{ apuesta.pointsEarned > 0 ? '+' + apuesta.pointsEarned + ' pts' : 'Fallada' }}
+            </ion-badge>
+            <ion-badge class="badge-pendiente" *ngIf="apuesta.match?.status !== 'finished'">Pendiente</ion-badge>
+          </div>
+          <span class="jornada-label">Jornada {{ apuesta.match?.jornada }}</span>
+        </div>
+
+        <div class="marcador-prediccion">
+          <div class="equipo-block">
+            <span class="name">{{ apuesta.match?.home }}</span>
+            <div class="goles-user">{{ apuesta.homeScore }}</div>
+          </div>
+          
+          <div class="separador-vs">vs</div>
+          
+          <div class="equipo-block">
+            <div class="goles-user">{{ apuesta.awayScore }}</div>
+            <span class="name">{{ apuesta.match?.away }}</span>
+          </div>
+        </div>
+
+        <div class="resultado-real-box" *ngIf="apuesta.match?.status === 'finished'">
+          <div class="resultado-tag">Resultado real</div>
+          <div class="resultado-val">{{ apuesta.match.homeScore }} - {{ apuesta.match.awayScore }}</div>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

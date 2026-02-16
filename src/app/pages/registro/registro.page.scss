@@ -1,0 +1,85 @@
+/* ==========================================================================
+   FONDO Y CENTRADO MAESTRO
+   ========================================================================== */
+ion-content {
+  --background: #004d31 !important;
+  background: linear-gradient(180deg, #004d31 0%, #002b1b 100%) !important;
+}
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh; /* Centrado vertical */
+  width: 100%;
+}
+
+.login-card {
+  width: 90%;
+  max-width: 400px; /* Tamaño ideal para móvil y escritorio */
+  padding: 10px;
+}
+
+/* ==========================================================================
+   HEADER CARLOS BETS
+   ========================================================================== */
+.header-bet {
+  --background: #002b1b !important;
+  border-bottom: 2px solid #ffdf1b;
+}
+
+.title-bet {
+  color: #ffdf1b !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-amarillo {
+  --color: #ffdf1b !important;
+}
+
+/* ==========================================================================
+   INPUTS (FONDO BLANCO)
+   ========================================================================== */
+ion-item {
+  --background: #ffffff !important;
+  --color: #003321 !important;
+  --border-radius: 12px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border: 1px solid #cbd5cf;
+
+  ion-label {
+    color: #004d31 !important;
+    font-weight: 700 !important;
+    margin-bottom: 4px !important;
+  }
+
+  ion-input {
+    --color: #003321 !important;
+    color: #003321 !important;
+    font-weight: 600;
+  }
+}
+
+/* ==========================================================================
+   BOTÓN Y FOOTER
+   ========================================================================== */
+.btn-login {
+  --background: #1eb980 !important;
+  --color: #003321 !important;
+  --border-radius: 12px;
+  font-weight: 800;
+  height: 50px;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.text-footer {
+  color: #b3c9c0;
+  font-size: 0.9rem;
+  margin-top: 20px;
+  text-align: center;
+}

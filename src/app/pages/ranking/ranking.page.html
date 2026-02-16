@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header-bet">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" class="btn-amarillo" text="Volver"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title-bet">Ranking Global</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-container">
+    
+    <h2 class="section-title">🏆 Top Apostadores</h2>
+
+    <ion-card class="ranking-card">
+      <ion-list lines="none" class="bg-transparent">
+        <ion-item *ngFor="let user of usuarios; let i = index" 
+                  [class.top-one]="i === 0" 
+                  [class.top-two]="i === 1" 
+                  [class.top-three]="i === 2"
+                  class="ranking-item">
+          
+          <div slot="start" class="pos-badge">
+            <span *ngIf="i > 2">{{ i + 1 }}</span>
+            <ion-icon *ngIf="i === 0" name="trophy"></ion-icon>
+            <ion-icon *ngIf="i === 1 || i === 2" name="medal"></ion-icon>
+          </div>
+
+          <ion-label>
+            <h2 class="user-name">{{ user.username }}</h2>
+          </ion-label>
+
+          <div slot="end" class="points-container">
+            <span class="points-val">{{ user.points }}</span>
+            <span class="points-label">PTS</span>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+  </div>
+</ion-content>

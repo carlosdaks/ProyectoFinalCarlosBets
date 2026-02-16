@@ -1,0 +1,94 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header-bet">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" class="btn-amarillo" text="Volver"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title-bet">DETALLES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-verde-fijo">
+  <div class="main-container" *ngIf="match">
+    
+    <ion-card class="scoreboard-card">
+      <ion-card-content>
+        <p class="jornada-badge">Jornada {{ match.jornada }}</p>
+        
+        <div class="score-display">
+          <div class="team-block">
+            <h3>{{ match.home }}</h3>
+          </div>
+          
+          <div class="score-number" *ngIf="match.status !== 'pending'">
+            {{ match.homeScore }} - {{ match.awayScore }}
+          </div>
+          <div class="score-number" *ngIf="match.status === 'pending'">
+            VS
+          </div>
+          
+          <div class="team-block">
+            <h3>{{ match.away }}</h3>
+          </div>
+        </div>
+
+        <div class="status-box">
+          <ion-badge [class.pulse]="match.status === 'live'">
+            {{ (match.status === 'live' ? 'En Vivo - ' + (match.minute || 0) + "'" : match.status) | uppercase }}
+          </ion-badge>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <div *ngIf="match.status !== 'pending'">
+      <h2 class="section-title">⚽ Crónica y Goles</h2>
+      
+      <ion-card class="events-card">
+        <ion-list lines="none" style="background: transparent;">
+          <ion-item *ngFor="let evento of match.events" class="event-item">
+            <ion-icon name="football-outline" slot="start"></ion-icon>
+            <ion-label>
+              <h2 class="player-name">{{ evento.player }}</h2>
+              <p class="event-detail">Minuto {{ evento.minute }}' · {{ evento.team }}</p>
+            </ion-label>
+            <ion-badge slot="end" class="badge-marcador">{{ evento.score }}</ion-badge>
+          </ion-item>
+
+          <div *ngIf="!match.events || match.events.length === 0" class="no-events">
+            <p>No ha habido goles todavía</p>
+          </div>
+        </ion-list>
+      </ion-card>
+    </div>
+
+    <div *ngIf="match.status === 'pending'" class="bet-section">
+      <h2 class="section-title">🏆 Tu Pronóstico</h2>
+      
+      <ion-card class="bet-card">
+        <ion-card-content>
+          <div class="bet-selector">
+            <div class="selector-column">
+              <ion-button (click)="ajustarGoles('home', 1)" fill="clear" class="btn-adjust">+</ion-button>
+              <div class="big-number">{{ golesHome }}</div>
+              <ion-button (click)="ajustarGoles('home', -1)" fill="clear" class="btn-adjust">-</ion-button>
+              <p class="team-label">{{ match.home }}</p>
+            </div>
+
+            <div class="separator">:</div>
+
+            <div class="selector-column">
+              <ion-button (click)="ajustarGoles('away', 1)" fill="clear" class="btn-adjust">+</ion-button>
+              <div class="big-number">{{ golesAway }}</div>
+              <ion-button (click)="ajustarGoles('away', -1)" fill="clear" class="btn-adjust">-</ion-button>
+              <p class="team-label">{{ match.away }}</p>
+            </div>
+          </div>
+
+          <ion-button expand="block" class="confirm-btn" (click)="enviarMiApuesta()">
+            Confirmar Apuesta
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+  </div>
+</ion-content>

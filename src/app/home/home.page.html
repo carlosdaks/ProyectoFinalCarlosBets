@@ -1,20 +1,163 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header-bet">
+    <ion-buttons slot="start">
+      <ion-button (click)="logout()" class="btn-amarillo">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <p>Cerrar sesión</p>
+      </ion-button>
+      <ion-button routerLink="/perfil" class="btn-amarillo">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <p>{{ username}}</p>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="title-bet">Carlos Bets</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/historial" class="btn-amarillo">Historial</ion-button>
+      <ion-button routerLink="/clasificacion" class="btn-amarillo">Liga</ion-button>
+      <ion-button routerLink="/ranking" class="btn-amarillo">Ranking</ion-button>
+      <ion-button routerLink="/perfil" class="btn-amarillo">Perfil</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="main-container">
+    
+    <h2>Bienvenido, {{ username }}</h2>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-searchbar 
+      placeholder="Buscar equipo..." 
+      (ionInput)="buscarPartido($event)"
+      class="custom-searchbar"
+      animated="true">
+    </ion-searchbar>
+
+    <div class="filtro-container">
+      <button [class.active]="segmentoSeleccionado === 'todos'" (click)="cambiarFiltro('todos')">Todos</button>
+      <button [class.active]="segmentoSeleccionado === 'live'" (click)="cambiarFiltro('live')">En Vivo</button>
+      <button [class.active]="segmentoSeleccionado === 'pending'" (click)="cambiarFiltro('pending')">Próximos</button>
+      <button [class.active]="segmentoSeleccionado === 'finished'" (click)="cambiarFiltro('finished')">Finalizados</button>
+    </div>
+
+    <div *ngIf="partidosLive.length === 0 && partidosPending.length === 0 && partidosFinished.length > 0" class="fin-temporada-container">
+      <ion-card class="fin-temporada-card">
+        <ion-card-content class="ion-text-center">
+          <ion-icon name="trophy" class="fin-temporada-icon"></ion-icon>
+          <h2 class="fin-temporada-title">¡Fin de Temporada!</h2>
+          <p class="fin-temporada-subtitle">Se han disputado todas las jornadas de La Liga.</p>
+          <p class="fin-temporada-text">Revisa el <strong>Ranking</strong> para ver quién es el rey de las apuestas.</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="segmentoSeleccionado === 'todos' || segmentoSeleccionado === 'live'">
+      <ion-list-header *ngIf="filtrarPorNombre(partidosLive).length > 0">
+        <ion-label color="danger">● EN VIVO</ion-label>
+      </ion-list-header>
+
+      <ion-card *ngFor="let p of filtrarPorNombre(partidosLive)" class="live-card">
+        <ion-card-content>
+          <p class="jornada-info">Jornada {{ p.jornada }}</p>
+          <div class="match-row" style="display: flex; align-items: center; justify-content: space-around;">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1; justify-content: flex-end;">
+              <span class="team">{{ p.home }}</span>
+              <img [src]="getEscudo(p.home)" class="escudo-home">
+            </div>
+            
+            <span class="score-live" style="flex: 0.5; text-align: center;">{{ p.homeScore }} - {{ p.awayScore }}</span>
+            
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1; justify-content: flex-start;">
+              <img [src]="getEscudo(p.away)" class="escudo-home">
+              <span class="team">{{ p.away }}</span>
+            </div>
+          </div>
+          <p class="minute ion-text-center">
+            <ion-badge color="danger">Minuto: {{ p.minute || '1' }}'</ion-badge>
+          </p>
+          <ion-button fill="clear" expand="block" [routerLink]="['/detalles-partidos', p.id]">
+            Seguir en directo
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="segmentoSeleccionado === 'todos' || segmentoSeleccionado === 'pending'">
+      <ion-list-header *ngIf="filtrarPorNombre(partidosPending).length > 0">
+        <ion-label color="primary">PRÓXIMOS PARTIDOS</ion-label>
+      </ion-list-header>
+
+      <div class="grid-proximos">
+        <ion-card *ngFor="let p of filtrarPorNombre(partidosPending)" class="proximo-card">
+          <ion-card-content>
+            <p class="jornada-info blue">Jornada {{ p.jornada }}</p>
+            
+            <div class="match-grid-content" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px; width: 100%; justify-content: center;">
+                <img [src]="getEscudo(p.home)" class="escudo-home2">
+                <div class="team-name">{{ p.home }}</div>
+              </div>
+              <div class="vs-small">vs</div>
+              <div style="display: flex; align-items: center; gap: 8px; width: 100%; justify-content: center;">
+                <img [src]="getEscudo(p.away)" class="escudo-home2">
+                <div class="team-name">{{ p.away }}</div>
+              </div>
+            </div>
+
+            <ion-button fill="outline" size="small" [routerLink]="['/detalles-partidos', p.id]" expand="block" style="margin-top: 15px;">
+              Apostar
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <div *ngIf="segmentoSeleccionado === 'todos' || segmentoSeleccionado === 'finished'">
+  <ion-list-header *ngIf="filtrarPorNombre(partidosFinished).length > 0">
+    <ion-label color="medium">FINALIZADOS</ion-label>
+  </ion-list-header>
+
+  <div class="grid-proximos">
+    <ion-card *ngFor="let p of filtrarPorNombre(partidosFinished)" class="proximo-card finalizado-card">
+      <ion-card-content>
+        <p class="jornada-info gray">Jornada {{ p.jornada }}</p>
+        
+        <div class="match-grid-content" style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+          <div style="display: flex; align-items: center; gap: 5px;">
+            <img [src]="getEscudo(p.home)" class="escudo-home2">
+            <div class="team-name">{{ p.home }}</div>
+          </div>
+          <div class="score-final">{{ p.homeScore }} - {{ p.awayScore }}</div>
+          <div style="display: flex; align-items: center; gap: 5px;">
+            <img [src]="getEscudo(p.away)" class="escudo-home2">
+            <div class="team-name">{{ p.away }}</div>
+          </div>
+        </div>
+
+        <ion-button fill="clear" size="small" [routerLink]="['/detalles-partidos', p.id]" expand="block">
+          Ver detalles
+        </ion-button>
+
+        <div *ngIf="getUltimoEventoGol(p)" class="contenedor-ultimo-gol">
+  <div class="titulo-gol">
+    <ion-icon name="football-outline"></ion-icon>
+    <span>ÚLTIMO GOL</span>
   </div>
+
+  <div class="info-jugador-gol">
+    <div class="avatar-nombre">
+      <img [src]="'https://api.dicebear.com/7.x/avataaars/svg?seed=' + getUltimoEventoGol(p).player" class="avatar-goleador">
+      <span class="nombre-jugador">{{ getUltimoEventoGol(p).player }}</span>
+    </div>
+    <span class="minuto-gol">{{ getUltimoEventoGol(p).minute }}'</span>
+  </div>
+</div>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+</div>
+
+  </div> 
 </ion-content>

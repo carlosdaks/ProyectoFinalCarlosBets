@@ -1,0 +1,85 @@
+/* ==========================================================================
+   FONDO Y CENTRADO MAESTRO
+   ========================================================================== */
+ion-content {
+  --background: #004d31 !important;
+  background: linear-gradient(180deg, #004d31 0%, #002b1b 100%) !important;
+  --display: flex;
+  --align-items: center;
+  --justify-content: center;
+}
+
+/* El "div" que centra y limita el ancho */
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  width: 100%;
+}
+
+.login-card {
+  width: 90%;
+  max-width: 400px; /* Evita que sea demasiado ancho en tablets/PC */
+  padding: 20px;
+  background: transparent;
+}
+
+/* ==========================================================================
+   INPUTS (ESTILO LIMPIO)
+   ========================================================================== */
+ion-item {
+  --background: #ffffff !important;
+  --color: #003321 !important;
+  --border-radius: 12px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: 1px solid #cbd5cf;
+
+  ion-label {
+    color: #004d31 !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* ==========================================================================
+   BOTONES DEFINITIVOS
+   ========================================================================== */
+.btn-login {
+  --background: #1eb980 !important; /* Verde Esmeralda */
+  --color: #003321 !important;
+  --border-radius: 12px;
+  font-weight: 800;
+  height: 50px;
+  margin-top: 10px;
+}
+
+.btn-registro {
+  --color: #ffdf1b !important; /* Amarillo Carlos Bets */
+  --border-color: #ffdf1b !important;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.text-footer {
+  color: #b3c9c0;
+  font-size: 0.9rem;
+  margin-top: 25px;
+  text-align: center;
+}
+.header-bet {
+  --background: #002b1b !important;
+  border-bottom: 2px solid #ffdf1b;
+}
+
+.title-bet {
+  color: #ffdf1b !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-amarillo {
+  --color: #ffdf1b !important;
+}

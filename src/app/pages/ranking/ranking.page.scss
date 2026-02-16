@@ -1,0 +1,116 @@
+/* FONDO GLOBAL CARLOS BETS */
+ion-content {
+  --background: #004d31 !important;
+  background: linear-gradient(180deg, #004d31 0%, #002b1b 100%) !important;
+}
+
+.main-container {
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* HEADER */
+.header-bet {
+  --background: #002b1b !important;
+  border-bottom: 2px solid #ffdf1b;
+}
+
+.title-bet {
+  color: #ffdf1b !important;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.btn-amarillo {
+  --color: #ffdf1b !important;
+}
+
+/* TARJETA DE RANKING */
+.ranking-card {
+  --background: #e9f0ec !important;
+  background: #e9f0ec !important;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.ranking-item {
+  --background: transparent !important;
+  margin: 5px 10px;
+  border-radius: 12px;
+  --padding-start: 15px;
+  --padding-end: 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+
+  .user-name {
+    font-weight: 800;
+    color: #003321;
+    font-size: 1.1rem;
+  }
+
+  .user-sub {
+    font-size: 0.75rem;
+    color: #666;
+  }
+}
+
+/* ESTILOS DEL PODIO */
+.top-one {
+  --background: #ffdf1b !important; /* Oro para el ganador */
+  border-bottom: none;
+  .pos-badge ion-icon { color: #004d31; font-size: 1.5rem; }
+  .user-name, .points-val { color: #004d31 !important; }
+}
+
+.top-two {
+  background: rgba(192, 192, 192, 0.2) !important; /* Plata */
+  .pos-badge ion-icon { color: #8e8e8e; font-size: 1.3rem; }
+}
+
+.top-three {
+  background: rgba(205, 127, 50, 0.1) !important; /* Bronce */
+  .pos-badge ion-icon { color: #cd7f32; font-size: 1.3rem; }
+}
+
+/* BADGE DE POSICIÓN Y PUNTOS */
+.pos-badge {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: #004d31;
+}
+
+.points-container {
+  text-align: right;
+  .points-val {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #004d31;
+    line-height: 1;
+  }
+  .points-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #666;
+  }
+}
+
+.section-title {
+  color: white;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.bg-transparent {
+  background: transparent !important;
+}

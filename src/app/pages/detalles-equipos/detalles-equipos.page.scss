@@ -1,0 +1,143 @@
+/* FONDO GLOBAL CARLOS BETS */
+ion-content {
+  --background: #004d31 !important;
+  background: linear-gradient(180deg, #004d31 0%, #002b1b 100%) !important;
+}
+
+.main-container {
+  width: 95%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 15px 0 50px 0;
+}
+
+/* HEADER */
+.header-bet {
+  --background: #002b1b !important;
+  border-bottom: 2px solid #ffdf1b;
+}
+
+.title-bet {
+  color: #ffdf1b !important;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.btn-amarillo {
+  --color: #ffdf1b !important;
+}
+
+/* CABECERA DEL EQUIPO (TARJETA PRINCIPAL) */
+.team-header-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 223, 27, 0.1);
+
+  .shield-xl {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    color: #ffdf1b;
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  p {
+    color: white;
+    opacity: 0.8;
+    font-weight: 600;
+    margin-top: 5px;
+    letter-spacing: 1px;
+  }
+}
+
+/* SECCIÓN TÍTULOS */
+.section-title {
+  color: white;
+  font-weight: 800;
+  margin: 20px 0 15px 5px;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* GRID DE JUGADORES */
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.player-card {
+  --background: #e9f0ec !important;
+  background: #e9f0ec !important;
+  margin: 0 !important;
+  border-radius: 15px;
+  transition: transform 0.2s ease;
+  border-bottom: 4px solid #004d31;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  ion-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+  }
+
+  .player-avatar {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    padding: 5px;
+    border: 2px solid #ffdf1b;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .player-info {
+    .player-name {
+      display: block;
+      color: #003321;
+      font-weight: 800;
+      font-size: 0.95rem;
+      line-height: 1.2;
+      text-align: center;
+    }
+  }
+}
+
+/* MENSAJE VACÍO Y CARGA */
+.white-text {
+  color: white;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+/* RESPONSIVE PARA MÓVILES PEQUEÑOS */
+@media (max-width: 400px) {
+  .players-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .team-header-card h1 {
+    font-size: 1.6rem;
+  }
+}
